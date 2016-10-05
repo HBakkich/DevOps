@@ -20,6 +20,15 @@
             fill="rgba(255, 255, 0, 0.75)"
             stroke="rgba(255, 0, 0, 0.25)" stroke-width="10"/>
         
+  the circles variable formatting:
+  .attr("fill", "yellow")
+                .attr("stroke", "orange")
+                .attr("stroke-width", function(d) {
+                    return d/2;
+                })
+                .attr("opacity", 0.3)
+  
+  
         </svg>-->
         
         <script type="text/javascript">
@@ -27,7 +36,10 @@
             var w = 500;
             var h = 50;
             //Dataset
-            var dataset = [ 5, 10, 15, 20, 25 ];
+            var dataset = [
+                [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
+                [410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
+              ];
             //Creating SVG
             var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
             //Creating circles for each item in the dataset
@@ -36,19 +48,13 @@
                 .enter()
                 .append("circle");
             //Setting circles attributes
-            circles.attr("cx", function(d, i) {
-                return (i * 50) + 25;
+            circles.attr("cx", function(d) {
+                return d[0];
                 })
-                .attr("cy", h/2)
-                .attr("r", function(d) {
-                    return d;
+                .attr("cy", function(d) {
+                return d[1];
                 })
-                .attr("fill", "yellow")
-                .attr("stroke", "orange")
-                .attr("stroke-width", function(d) {
-                    return d/2;
-                })
-                .attr("opacity", 0.3);
+                .attr("r", 5);
     
     //d3.select("body").selectAll("p").data(dataset).enter().append("p").text("New paragraph!");
         </script>
