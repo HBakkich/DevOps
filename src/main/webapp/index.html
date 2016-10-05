@@ -8,7 +8,7 @@
     </head>
 
     <body>
-        <svg width="500" height="500">
+  <!--      <svg width="500" height="500">
         
         <circle cx="25" cy="25" r="20"
             fill="rgba(128, 0, 128, 0.75)" 
@@ -20,11 +20,37 @@
             fill="rgba(255, 255, 0, 0.75)"
             stroke="rgba(255, 0, 0, 0.25)" stroke-width="10"/>
         
-        </svg>
+        </svg>-->
         
         <script type="text/javascript">
+            //Width and height
+            var w = 500;
+            var h = 50;
+            //Dataset
             var dataset = [ 5, 10, 15, 20, 25 ];
-            d3.select("body").selectAll("p").data(dataset).enter().append("p").text("New paragraph!");
+            //Creating SVG
+            var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
+            //Appending a circle for each item in the dataset
+            svg.selectAll("circle")
+            .data(dataset)
+            .enter()
+            .append("circle");
+            //Setting circle design
+            circles.attr("cx", function(d, i) {
+            return (i * 50) + 25;
+            })
+            .attr("cy", h/2)
+            .attr("r", function(d) {
+                return d;
+            })
+            .attr("fill", "yellow")
+            .attr("stroke", "orange")
+            .attr("stroke-width", function(d) {
+                return d/2;
+            })
+            .attr(opacity, 0.3);
+    
+    //d3.select("body").selectAll("p").data(dataset).enter().append("p").text("New paragraph!");
         </script>
         
         
