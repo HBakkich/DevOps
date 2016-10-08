@@ -34,7 +34,7 @@
                 popValue = function(d) { return d.Population;};
             
             
-            d3.json(feed, function(data) {
+            var circles = d3.json(feed, function(data) {
                 svg.selectAll("path")
                     .data(data.features)
                     .enter()
