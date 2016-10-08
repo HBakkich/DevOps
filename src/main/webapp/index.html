@@ -29,6 +29,10 @@
                 .enter()
                 .append("circle");*/
             var feed = 'http://ac32007.cloudapp.net:8080/Circles/Towns/20';
+            
+            d3.json(feed, function(data) {
+  console.log(data[0]);
+});
             var xValue = function(d) { return d.lng;},
                 yValue = function(d) { return d.lat;},
                 popValue = function(d) { return d.Population;};
