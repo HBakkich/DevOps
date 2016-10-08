@@ -29,14 +29,14 @@
                 .enter()
                 .append("circle");*/
             var feed = 'http://ac32007.cloudapp.net:8080/Circles/Towns/20';
-            var xValue = function(d) { return d.lng;document.write(d.lng);},
-                yValue = function(d) { return d.lat;document.write(d.lat);},
-                popValue = function(d) { return d.Population;document.write(d.Population);};
+            var xValue = function(d) { return d.lng;},
+                yValue = function(d) { return d.lat;},
+                popValue = function(d) { return d.Population;};
             
             
-            d3.json(feed, function(json) {
+            d3.json(feed, function(data) {
                 svg.selectAll("path")
-                    .data(json.features)
+                    .data(data.features)
                     .enter()
                     .append("circle")
                     .attr("cx", xValue)
