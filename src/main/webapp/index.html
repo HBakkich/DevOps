@@ -29,11 +29,19 @@
                 .enter()
                 .append("circle");*/
             var feed = 'http://ac32007.cloudapp.net:8080/Circles/Towns/20';
-            var circles = d3.json(feed, function(json) {
+            var xValue = function(d) { return d.lng;},
+                yValue = function(d) { return d.lat;},
+                popValue = function(d) { return d.Population;};
+            
+            
+            d3.json(feed, function(json) {
                 svg.selectAll("path")
                     .data(json.features)
                     .enter()
-                    .append("circle");
+                    .append("circle")
+                    .attr("cx", xValue)
+                    .attr("cy", yValue)
+                    .attr("r", popValue);;
             });
             //Creating labels
 /*            var labels = svg.selectAll("text")
@@ -49,12 +57,8 @@
                 .range([0, h]);
 */        
             //Setting circles attributes
-            var xValue = function(d) { return d.lng;},
-                    yValue = function(d) { return d.lat;},
-                    popValue = function(d) { return d.Population;};
-            circles.attr("cx", xValue)
-                .attr("cy", yValue)
-                .attr("r", Population);
+            
+            
 /*        
             //Setting label attributes    
             labels.text(function(d) {return d[0] + "," + d[1];})
