@@ -13,11 +13,11 @@
 
 
             //Creating SVG
-            var w = 600;
-            var h = 500;
+            var w = 1000;
+            var h = 600;
             var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
             //Creating circles for each item in the dataset
-            d3.json("towns.json", function(error, data) {
+            d3.json("http://ac32007.cloudapp.net:8080/Circles/Towns/200", function(error, data) {
                 if (error) alert(error);
             var circles = svg.selectAll("circle")
                 .data(data)
@@ -30,7 +30,7 @@
                 .append("text");
             //Creating scales and setting attributes       
             var xScale = d3.scale.linear()
-                .domain([0, function(d) { return d.lng; }])
+                .domain([0, function(d) { return d.lng*100; }])
                 .range([0, w]);
             var yScale = d3.scale.linear()
                 .domain([0, function(d) { return d.lat; }])
