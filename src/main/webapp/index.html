@@ -38,11 +38,11 @@
                 svg.selectAll("path")
                     .data(data.features)
                     .enter()
-                    .append("circle")
-                    .attr("cx", xValue)
-                    .attr("cy", yValue)
-                    .attr("r", popValue);;
+                    .append("circle");
             });
+            circles.attr("cx", xValue)
+                    .attr("cy", yValue)
+                    .attr("r", popValue);
             //Creating labels
 /*            var labels = svg.selectAll("text")
                 .data(feed, function(d) { return d[2]; })
