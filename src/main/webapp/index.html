@@ -28,22 +28,24 @@
                 .data(dataset)
                 .enter()
                 .append("circle");*/
-            var feed = 'http://ac32007.cloudapp.net:8080/Circles/Towns/20';
             var xValue = function(d) { return d.lng;},
                 yValue = function(d) { return d.lat;},
                 popValue = function(d) { return d.Population;};
             
             
-            var circles = d3.json(feed, function(json) {
-                svg.selectAll("path")
-                    .data(json.features)
+            
+            
+            d3.json("towns.json", function(error, data) {
+            if (error) alert(error); 
+            svg.selectAll("circle")
+                    .data(data)
                     .enter()
-                    .append("circle");
+                    .append("circle")
+                    .attr("cx", function(d) { return d.lng*100;})
+                    .attr("cy", function(d) { return d.lat*10;})
+                    .attr("r", function(d) { return d.Population/1000;});
             });
-            circles.attr("cx", xValue)
-                    .attr("cy", yValue)
-                    .attr("r", popValue);
-            //Creating labels
+            
 /*            var labels = svg.selectAll("text")
                 .data(feed, function(d) { return d[2]; })
                 .enter()
