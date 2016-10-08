@@ -31,7 +31,7 @@
             var feed = 'http://ac32007.cloudapp.net:8080/Circles/Towns/20';
             
             d3.json(feed, function(data) {
-  document.write(data[0]);
+  document.write(data);
 });
             var xValue = function(d) { return d.lng;},
                 yValue = function(d) { return d.lat;},
