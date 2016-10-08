@@ -11,19 +11,16 @@
 
    <script type="text/javascript">
 
-            //Creating Dataset
-            var dataset = [
-                [5, 20], [480, 90], [250, 50], [100, 33], [330, 95],
-                [410, 12], [475, 44], [25, 67], [85, 21], [220, 88]
-              ];
 
             //Creating SVG
             var w = 600;
             var h = 500;
             var svg = d3.select("body").append("svg").attr("width", w).attr("height", h);
             //Creating circles for each item in the dataset
+            d3.json("towns.json", function(error, data) {
+                if (error) alert(error);
             var circles = svg.selectAll("circle")
-                .data(dataset)
+                .data(data)
                 .enter()
                 .append("circle");
             //Creating labels
@@ -33,10 +30,10 @@
                 .append("text");
             //Creating scales and setting attributes       
             var xScale = d3.scale.linear()
-                .domain([0, d3.max(dataset, function(d) { return d[0]; })])
+                .domain([0, function(d) { return d.lng; }])
                 .range([0, w]);
             var yScale = d3.scale.linear()
-                .domain([0, d3.max(dataset, function(d) { return d[1]; })])
+                .domain([0, function(d) { return d.lat; }])
                 .range([0, h]);
             //Setting circles attributes
             circles.attr("cx", function(d) {
